@@ -19,6 +19,11 @@ After verifying NodeJs is installed correctly, you should be all set!
 
 [For troubleshooting, go here.](https://www.instructables.com/id/NodeJs-and-Arduino/)
 
+### Spotify Setup (IN PROGRESS)
+https://developer.spotify.com/documentation/web-api/quick-start/
+https://github.com/spotify/web-api-auth-examples
+
+
 ## Running code
 index.js is the main file that the project runs on. To run the project, use the following command:
 
