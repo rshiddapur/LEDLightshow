@@ -1,0 +1,13 @@
+{
+	"name": "LED Lightshow",
+	"version": "1.0.0:",
+	"description": "A Spotify-based LED visualizer",
+	"main": "index.js",
+	"dependencies": {
+		"johnny-five": "^1.4.0"
+	},
+	"devDependencies": {},
+	"scripts": {},
+	"author": "Raj Shiddapur",
+	"license": "IDK"
+}
