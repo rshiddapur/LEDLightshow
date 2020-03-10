@@ -1,7 +1,7 @@
-var five =require('johnny-five'); //require/import the johnny-five module
-var board=new five.Board(); //the Board class from johnny-five module
+var five = require('johnny-five'); //require/import the johnny-five module
+var board = new five.Board(); //the Board class from johnny-five module
 
-//When the board is ready strobe every 500 milliseconds.
+// When the board is ready, strobe to the BPM of a given song.
 
 // If individual control is needed 
 var RedLED;
@@ -10,6 +10,9 @@ var BlueLED;
 
 // Controls the strip as an RGB LED
 var LightStrip;
+
+// Global song information values
+var BPM;
 
 board.on('ready', function(){
 
@@ -20,11 +23,15 @@ board.on('ready', function(){
 
 	LightStrip = new five.Led.RGB([9, 10, 11]);
 
+	BPM = 171; // TODO: pull BPM information from Spotify API
+
+	var MSPB = (60.0 / BPM) * 1000.0; // milliseconds per beat
+
 	LightStrip.off();
 
 	//LightStrip.color(0, 255, 255);
-	LightStrip.color("darkgreen");
+	LightStrip.color("yellow");
+	// Can also use LightStrip.color() without inputs to return the current state value
 
-	LightStrip.strobe(500);
-
+	LightStrip.strobe(MSPB);
 }); 
