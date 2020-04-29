@@ -1,8 +1,6 @@
 var five = require('johnny-five'); //require/import the johnny-five module
 var board = new five.Board(); //the Board class from johnny-five module
 
-// When the board is ready, strobe to the BPM of a given song.
-
 // If individual control is needed 
 var RedLED;
 var GreenLED;
@@ -14,6 +12,7 @@ var LightStrip;
 // Global song information values
 var BPM;
 var valence;
+var volume;
 
 board.on('ready', function(){
 
@@ -27,10 +26,12 @@ board.on('ready', function(){
 
 	BPM = 171; // TODO: pull BPM information from Spotify API. Represented as "tempo"
 	valence = 0.5; // TODO: pull valence information from Spotify API. Represented as "valence"
+	volume = 100; // TODO: pull valence information from Spotify API. Represented as "volume_percent"
 
 	// Can also use LightStrip.color() without inputs to return the current state value
 	//bpmStrobe(BPM, "white"); // Strobe the light strip based on a given song BPM and color.
-	valenceColor(valence); // Change the color of the LED strip based on a given song valence.
+	//valenceColor(valence); // Change the color of the LED strip based on a given song valence.
+	volumeBrightness(volume); // Change the brightness of the LED strip based on current player volume.
 }); 
 
 // Strobe the LED strip based on a given song BPM and color. 
@@ -51,8 +52,17 @@ function bpmStrobe(BPM, color) {
 function valenceColor(valence) {
 
 	LightStrip.off(); // reset from previous state
-	
+
 	var red = 255.0 * valence;
 	var blue = 255.0 - red;
 	LightStrip.color(red, 0.0, blue);
+}
+
+// Change the brightness of the LED strip based on current player volume.
+// The light strip will go from 0% to 100% based on volume.
+function volumeBrightness(volume) {
+
+	LightStrip.off(); // reset from previous state
+	LightStrip.color("white");
+	LightStrip.intensity(volume);
 }
