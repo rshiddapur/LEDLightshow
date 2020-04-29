@@ -25,13 +25,17 @@ board.on('ready', function(){
 
 	BPM = 171; // TODO: pull BPM information from Spotify API
 
+	bpmStrobe(BPM, "white");
+}); 
+
+function bpmStrobe(BPM, color) {
 	var MSPB = (60.0 / BPM) * 1000.0; // milliseconds per beat
 
 	LightStrip.off();
 
 	//LightStrip.color(0, 255, 255);
-	LightStrip.color("yellow");
+	LightStrip.color(color);
 	// Can also use LightStrip.color() without inputs to return the current state value
 
 	LightStrip.strobe(MSPB);
-}); 
+}
